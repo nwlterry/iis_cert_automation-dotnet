@@ -1,0 +1,22 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tfm: [net8.0, net10.0]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+      - name: Test ${{ matrix.tfm }}
+        run: dotnet test tests/IisCertAutomation.Tests/IisCertAutomation.Tests.csproj -c Release -f ${{ matrix.tfm }}

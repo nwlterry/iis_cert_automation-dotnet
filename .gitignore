@@ -1,0 +1,8 @@
+bin/
+obj/
+artifacts/
+.vs/
+*.user
+iis-cert-automation.config.json
+*.pfx
+*.log
